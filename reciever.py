@@ -2,10 +2,12 @@ import pika, sys, os, time
 
 
 def main():
+    # user administrator root
+    credentials = pika.PlainCredentials(username='root', password='root')
     # reciever as consumers
     connection = pika.BlockingConnection( # for managing connections that connected to rabbitmq
         # ConnectionParameters for rabbitmq 
-        parameters=pika.ConnectionParameters(host='localhost')
+        parameters=pika.ConnectionParameters(host='localhost', credentials=credentials)
     )
     channel = connection.channel() # for managing connections that connected to publisher/consumer
     '''
