@@ -1,4 +1,4 @@
-import pika
+import pika, time
 
 
 # user administrator root
@@ -32,7 +32,18 @@ contain a string "Hello World!" and we want to send it to our hello queue.
 channel.basic_publish( # publish the message via the queue
     exchange='', # direct exchange
     routing_key='hello', # the name must be the same as queue 
-    body='Hello World!' # the message that we will send
+    body='Hello World!', # the message that we will send
+    properties=pika.BasicProperties(
+        content_type='text/plain',
+        content_encoding='gzip',
+        timestamp=int(any),
+        expiration=str(time.time()),
+        delivery_mode=2, # options: 1(transient - RAM) and 2(persistent - HARD DISK)
+        user_id='10',
+        app_id='11',
+        type='exchange.queue',
+        headers={'name':'amirali', 'age':'24'},
+    )
 )
 
 

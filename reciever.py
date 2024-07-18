@@ -1,4 +1,4 @@
-import pika, sys, os
+import pika, sys, os, time
 
 
 def main():
@@ -25,13 +25,17 @@ def main():
 
 
     def call_back(channel, method, properties, body):
+        print(properties.headers) # properties in sender basic_publish
         print(f" [x] Received {body}")
+        time.sleep(5)
+        print("Done!")
+        channel.basic_ack(delivery_tag=method.delivery_tag ) # manual acknowledg instead of  auto_ack=True  in basic_consume
+        '''acknowledg must be the end of call_back function''' 
 
-
-
+    channel.basic_qos(prefetch_count=1) # ROUND ROBIN disterbutions will off and fetch one in each repeatation
     channel.basic_consume(
         queue='hello', # direct exchange
-        auto_ack=True, #message that consumer sent to broker, for deleting the message
+        # auto_ack=True, #message that consumer sent to broker, for deleting the message
         on_message_callback=call_back, # a response or action that consumer has to sender
     )
     '''
