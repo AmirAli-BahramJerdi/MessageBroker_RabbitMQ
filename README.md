@@ -4,7 +4,7 @@ this project is a simple test to send and recieve a message with a qeue
 
 
 
-## Roadmap
+## ***Do the following steps in order***
 
 - activate the virtual environment
 
@@ -18,13 +18,11 @@ this project is a simple test to send and recieve a message with a qeue
 ```
 
 
-- run sender.py
+- run sender.py and reciever in two separate terminals
 
 ```bash
   python sender.py
 ```
-
-- run reciever.py
 
 ```bash
   python reciever.py
@@ -45,4 +43,4 @@ this project is a simple test to send and recieve a message with a qeue
 
 - [@Amirali-Bahramjerdi](https://github.com/AmirAli-BahramJerdi)
 
-# Hope to enjoy it :)
+# ***Hope to enjoy it :)***
