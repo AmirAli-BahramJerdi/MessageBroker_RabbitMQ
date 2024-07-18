@@ -1,10 +1,12 @@
 import pika
 
 
+# user administrator root
+credentials = pika.PlainCredentials(username='root', password='root')
 # sender as publisher
 connection = pika.BlockingConnection( # for managing connections that connected to rabbitmq
     # ConnectionParameters for rabbitmq 
-    parameters=pika.ConnectionParameters(host='localhost')
+    parameters=pika.ConnectionParameters(host='localhost', credentials=credentials)
 )
 channel = connection.channel() # for managing connections that connected to consumer/reciever
 '''

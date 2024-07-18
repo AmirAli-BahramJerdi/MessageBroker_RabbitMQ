@@ -17,7 +17,23 @@ this project is a simple test to send and recieve a message with a qeue
   pip install -r requirements.txt
 ```
 
+- create an admin that username='root' and password='root'
+```bash
+  sudo rabbitmqctl add_user "root" "root"   
+```
 
+- give the user 'root' administrator permission
+```bash
+  sudo rabbitmqctl set_user_tags root administrator 
+```
+
+
+- give the user 'root' virtual host access (/)
+```bash
+  sudo rabbitmqctl set_permissions -p / root ".*" ".*" ".*" 
+```
+
+ 
 - run sender.py and reciever in two separate terminals
 
 ```bash
